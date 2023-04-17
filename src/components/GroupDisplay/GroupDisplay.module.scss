@@ -1,0 +1,30 @@
+@use '/src/styles/library' as lib;
+.display {
+	@include lib.mix-box();
+	h2 {
+		font-weight: 600;
+		color: lib.$main-600;
+		padding: lib.$ws-size--70 0;
+		border-bottom: 1.5px solid;
+		@include lib.mix-borders();
+		margin-bottom: lib.$ws-size--90;
+		span {
+			font-weight: 700;
+			letter-spacing: 1px;
+			margin: 0 lib.$ws-size--80;
+		}
+	}
+	ul {
+		list-style: none;
+	}
+	& > ul {
+		width: 100%;
+		display: grid;
+		grid-template-columns: repeat(2, max-content);
+		justify-content: space-between;
+		gap: lib.$ws-size--60 lib.$ws-size--70;
+	}
+	ul > li > ul > li {
+		margin: lib.$ws-size--90 0;
+	}
+}
