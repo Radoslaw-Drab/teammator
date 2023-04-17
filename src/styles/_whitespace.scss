@@ -7,6 +7,8 @@ $ratio: 1.25;
 	$val: math.pow($ratio, $pow);
 	@return calc($default * $val);
 }
+$size--60: #{getSize(-4)};
+$size--70: #{getSize(-3)};
 $size--80: #{getSize(-2)};
 $size--90: #{getSize(-1)};
 $size--100: #{getSize(1)};
