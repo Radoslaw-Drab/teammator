@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Actions, State } from 'components/settingsReducer/settingsReducers.model'
 
-// import styles from './GroupDisplay.module.scss';
+import styles from './GroupDisplay.module.scss'
 
 interface Props {
 	state: State
@@ -13,13 +13,23 @@ function GroupDisplay(props: Props) {
 	const groups = state.groups.map((group) => {
 		const peopleElements = group.persons.map((person) => <li key={person.id}>{person.name}</li>)
 		return (
-			<React.Fragment key={group.groupId}>
-				<h2>{`Group #${group.groupId + 1}`}</h2>
+			<li key={group.groupId}>
+				<h2>
+					Group
+					<span>{`#${group.groupId + 1}`}</span>
+				</h2>
 				<ul>{peopleElements}</ul>
-			</React.Fragment>
+			</li>
 		)
 	})
-	return <>{groups}</>
+	if (groups.length === 0) {
+		return <></>
+	}
+	return (
+		<section className={styles.display}>
+			<ul>{groups}</ul>
+		</section>
+	)
 }
 
 export default GroupDisplay
