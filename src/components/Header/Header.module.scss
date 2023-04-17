@@ -1,0 +1,13 @@
+@use '/src/styles/library' as lib;
+
+.header {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: lib.$ws-size--80;
+	h1 {
+		display: inline;
+		animation-duration: 30s;
+	}
+}

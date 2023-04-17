@@ -1,0 +1,27 @@
+@use '/src/styles/library' as lib;
+
+.anim {
+	$themes: (
+		'main': lib.$main-600 lib.$main-400,
+		'grey': lib.$grey-700 lib.$grey-200
+	);
+	@include lib.mix-color-scheme($themes) using ($main, $grey) {
+		background: linear-gradient(-45deg, $grey 50%, $main 50%, $grey 80%);
+		$background-x-size: 300%;
+		background-size: #{$background-x-size} 100%;
+		background-position-x: #{$background-x-size};
+		background-clip: text;
+		color: transparent;
+		@include lib.mix-anim(
+			(
+				animation-iteration-count: infinite,
+				animation-duration: 45s,
+				animation-timing-function: linear
+			)
+		) {
+			to {
+				background-position-x: -#{$background-x-size};
+			}
+		}
+	}
+}

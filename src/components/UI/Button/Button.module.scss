@@ -1,0 +1,38 @@
+@use '/src/styles/library' as lib;
+
+.button {
+	--background-clr: #{lib.$main-700};
+	--background-clr--hover: #{lib.$main-600};
+	--text-clr: #{lib.$grey-50};
+
+	border: 1.5px solid transparent;
+	padding: lib.$ws-size--s-l;
+	margin: lib.$ws-size--80;
+	letter-spacing: 0.25px;
+	font-weight: 600;
+	border-radius: 3px;
+
+	background-color: var(--background-clr);
+	color: var(--text-clr);
+	@include lib.mix-transition-all(lib.$anim-duration--100, outline-color, outline-width);
+
+	&:not(:disabled) {
+		&:hover {
+			background-color: var(--background-clr--hover);
+			cursor: pointer;
+			transform: translateY(-1px);
+		}
+		&:active {
+			transform: scale(0.98) translateY(2px);
+		}
+	}
+
+	$colors: (
+		'background': lib.$accent-700 lib.$accent-600
+	);
+	@include lib.mix-color-scheme($colors) using ($background) {
+		&:disabled {
+			background-color: $background;
+		}
+	}
+}

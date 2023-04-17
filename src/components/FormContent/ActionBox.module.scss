@@ -1,0 +1,12 @@
+@use '/src/styles/library' as lib;
+.box {
+	border: none;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: lib.$ws-size--100;
+	button {
+		font-size: lib.$font-size--110;
+		margin: 0;
+	}
+}

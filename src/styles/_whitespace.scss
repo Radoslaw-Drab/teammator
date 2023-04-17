@@ -1,0 +1,46 @@
+@use 'sass:math';
+
+$default: 1rem;
+$ratio: 1.25;
+
+@function getSize($pow) {
+	$val: math.pow($ratio, $pow);
+	@return calc($default * $val);
+}
+$size--80: #{getSize(-2)};
+$size--90: #{getSize(-1)};
+$size--100: #{getSize(1)};
+$size--110: #{getSize(2)};
+$size--120: #{getSize(3)};
+$size--130: #{getSize(4)};
+$size--140: #{getSize(5)};
+$size--150: #{getSize(6)};
+$size--160: #{getSize(7)};
+$size--170: #{getSize(8)};
+$size--180: #{getSize(9)};
+$size--190: #{getSize(10)};
+
+$size--s-m: $size--90 $size--100;
+$size--s-l: $size--90 $size--110;
+$size--s-xl: $size--90 $size--120;
+$size--s-xxl: $size--90 $size--130;
+
+$size--m-s: $size--100 $size--90;
+$size--m-l: $size--100 $size--110;
+$size--m-xl: $size--100 $size--120;
+$size--m-xxl: $size--100 $size--130;
+
+$size--l-s: $size--110 $size--90;
+$size--l-m: $size--110 $size--100;
+$size--l-xl: $size--110 $size--120;
+$size--l-xxl: $size--110 $size--130;
+
+$size--xl-s: $size--120 $size--90;
+$size--xl-m: $size--120 $size--100;
+$size--xl-l: $size--120 $size--110;
+$size--xl-xxl: $size--120 $size--130;
+
+$size--xxl-s: $size--130 $size--90;
+$size--xxl-m: $size--130 $size--100;
+$size--xxl-l: $size--130 $size--110;
+$size--xxl-xl: $size--130 $size--120;

@@ -1,0 +1,30 @@
+@use '/src/styles/library' as lib;
+.box {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: lib.$ws-size--140;
+	div {
+		display: flex;
+		gap: lib.$ws-size--80;
+		span {
+			font-size: lib.$font-size--140;
+			font-weight: 400;
+		}
+	}
+	fieldset {
+		border: none;
+		display: flex;
+		align-items: center;
+		gap: lib.$ws-size--90;
+
+		button {
+			aspect-ratio: 1 / 1;
+			margin: 0;
+			padding: 0.5em;
+		}
+	}
+	svg {
+		width: 1.5rem;
+	}
+}

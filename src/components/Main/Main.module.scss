@@ -1,0 +1,31 @@
+@use '/src/styles/library' as lib;
+.main {
+	width: 100%;
+	form {
+		border: 1.5px solid;
+		border-radius: 3px;
+		margin: lib.$ws-size--110 auto;
+		padding: lib.$ws-size--110;
+		width: max-content;
+		max-width: 600px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		@include lib.mix-theme((lib.$grey-800, lib.$grey-100), color);
+		hr {
+			margin: lib.$ws-size--100 0;
+			height: 1.5px;
+			border: none;
+			border-radius: 3px;
+		}
+		$colors: (
+			'border': lib.$grey-300 lib.$grey-700
+		);
+		@include lib.mix-color-scheme($colors) using ($border) {
+			border-color: $border;
+			hr {
+				background-color: $border;
+			}
+		}
+	}
+}

@@ -1,0 +1,77 @@
+@use 'sass:list';
+@use 'sass:map';
+@use 'sass:meta';
+
+@mixin anim($properties) {
+	$name: anim-#{unique-id()};
+
+	@keyframes #{$name} {
+		@content;
+	}
+
+	animation-name: $name;
+	@each $property, $value in $properties {
+		#{$property}: $value;
+	}
+}
+@mixin theme-prop($light, $dark, $properties...) {
+	@media (prefers-color-scheme: light) {
+		@each $property in $properties {
+			#{$property}: $light;
+		}
+	}
+	@media (prefers-color-scheme: dark) {
+		@each $property in $properties {
+			#{$property}: $dark;
+		}
+	}
+}
+
+@mixin theme($themes, $properties...) {
+	@media (prefers-color-scheme: light) {
+		@each $property in $properties {
+			#{$property}: list.nth($themes, 1);
+		}
+	}
+	@media (prefers-color-scheme: dark) {
+		@each $property in $properties {
+			#{$property}: list.nth($themes, 2);
+		}
+	}
+}
+
+@mixin color-scheme($colors) {
+	@if meta.content-exists() {
+		$props: ();
+		@each $color in $colors {
+			$prop: list.nth($color, 1);
+			$prop-clrs: map.get($colors, $prop);
+			$props: list.append($props, $prop);
+		}
+		@media (prefers-color-scheme: light) {
+			$themes: ();
+			@each $prop in $props {
+				$prop-colors: map.get($colors, $prop);
+				$color: list.nth($prop-colors, 1);
+				$themes: list.append($themes, $color);
+			}
+			@content ($themes...);
+		}
+		@media (prefers-color-scheme: dark) {
+			$themes: ();
+			@each $prop in $props {
+				$prop-colors: map.get($colors, $prop);
+				$color: list.nth($prop-colors, 2);
+				$themes: list.append($themes, $color);
+			}
+			@content ($themes...);
+		}
+	}
+}
+@mixin transition-all($duration, $properties...) {
+	$exceptions: ();
+	@each $property in $properties {
+		$exceptions: list.append($exceptions, $property + ' 0s', $separator: 'comma');
+	}
+	transition: all $duration, $exceptions;
+}

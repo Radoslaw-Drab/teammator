@@ -1,0 +1,34 @@
+@use '/src/styles/library' as lib;
+
+// @font-face {
+// 	font-family: 'Rubik';
+// 	src: url('/public/Rubik/Rubik-Italic-VariableFont_wght.ttf') format('truetype');
+// 	font-weight: normal;
+// 	font-style: normal;
+// }
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	@include lib.mix-theme-prop(lib.$grey-100, lib.$grey-900, background-color);
+	font-family: 'Rubik', 'Lato', sans-serif;
+}
+a:link {
+	text-decoration: none;
+}
+svg {
+	display: block;
+	aspect-ratio: 1 / 1;
+	width: 100%;
+}
+input,
+button {
+	&:not(:disabled):focus-visible {
+		outline-width: 2.5px;
+		outline-color: lib.$accent-500;
+	}
+}

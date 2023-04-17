@@ -1,0 +1,35 @@
+@use '/src/styles/library' as lib;
+.inputs {
+	display: grid;
+	grid-template-columns: 1fr auto;
+	justify-content: space-between;
+	align-items: center;
+	gap: lib.$ws-size--100 lib.$ws-size--120;
+	font-size: lib.$font-size--110;
+	input {
+		font-size: inherit;
+		padding: lib.$ws-size--80;
+	}
+	button {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		aspect-ratio: 1 / 1;
+		padding: 0.5em;
+		svg {
+			width: 1.5rem;
+		}
+	}
+	button,
+	input {
+		margin: 0;
+	}
+}
+.remove-button {
+	--background-clr: #{lib.$accent-600};
+	--background-clr--hover: #{lib.$accent-500};
+	--text-clr: #{lib.$grey-50};
+	svg {
+		stroke-width: 2.5px;
+	}
+}
