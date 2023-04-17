@@ -1,6 +1,6 @@
 import { State, Actions, Person, Group } from './settingsReducers.model'
 
-import { saveStateToLocalStorage } from 'utils'
+import { generateRandomKey, saveStateToLocalStorage } from 'utils'
 
 const initialState: State = {
 	persons: [],
@@ -12,18 +12,21 @@ function reducer(state: State, action: Actions): State {
 	switch (action.type) {
 		// Adds new person with random id and new name set by dispatch
 		case 'ADD_PERSON': {
-			const randomId = Math.round(Math.random() * 1000)
-			const updatedPersons = [...state.persons].concat({ id: randomId, name: action.newPersonName })
+			const randomId = generateRandomKey().number
+			const updatedPersons = [...state.persons].concat({
+				id: randomId,
+				name: action.newPersonName
+			})
 			const newState = { ...state, persons: updatedPersons }
 			saveStateToLocalStorage(newState)
 			return newState
 		}
 		// Adds new person with random id and new name set programmatically
 		case 'ADD_NEW_PERSON': {
-			const randomId = Math.round(Math.random() * 1000)
+			const randomId = generateRandomKey().number
 			const updatedPersons = [...state.persons].concat({
 				id: randomId,
-				name: `Person ${randomId}`
+				name: `Person ${generateRandomKey(2).string}`
 			})
 			const newState = { ...state, persons: updatedPersons }
 			saveStateToLocalStorage(newState)
