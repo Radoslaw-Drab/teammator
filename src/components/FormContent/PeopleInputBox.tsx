@@ -5,13 +5,13 @@ import Button from 'components/UI/Button/Button'
 import Input from 'components/UI/Input/Input'
 import { Actions, State } from 'components/settingsReducer/settingsReducers.model'
 
-import styles from './PersonsInputBox.module.scss'
+import styles from './PeopleInputBox.module.scss'
 interface Props {
 	state: State
 	dispatch: React.Dispatch<Actions>
 }
 
-function PersonsInputBox(props: Props) {
+function PeopleInputBox(props: Props) {
 	const { state, dispatch } = props
 
 	function onRemovePerson(event: React.MouseEvent<HTMLButtonElement>) {
@@ -40,4 +40,4 @@ function PersonsInputBox(props: Props) {
 	return <div className={styles.inputs}>{inputFields}</div>
 }
 
-export default PersonsInputBox
+export default PeopleInputBox

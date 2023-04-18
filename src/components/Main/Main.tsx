@@ -2,8 +2,8 @@ import React, { useEffect, useReducer } from 'react'
 import { settingsReducer } from 'components/settingsReducer/settingsReducer'
 import { getStateFromLocalStorage } from 'utils'
 
-import PersonsChangeButtonBox from 'components/FormContent/PersonsChangeButtonBox'
-import PersonsInputBox from 'components/FormContent/PersonsInputBox'
+import PeopleChangeButtonBox from 'components/FormContent/PeopleChangeButtonBox'
+import PeopleInputBox from 'components/FormContent/PeopleInputBox'
 import GroupCountInput from 'components/FormContent/GroupCountInput'
 import ActionBox from 'components/FormContent/ActionBox'
 import GroupDisplay from 'components/GroupDisplay/GroupDisplay'
@@ -26,9 +26,9 @@ function Main() {
 	return (
 		<main className={styles.main}>
 			<form onSubmit={onFormSubmit}>
-				<PersonsChangeButtonBox state={state} dispatch={dispatch} />
+				<PeopleChangeButtonBox state={state} dispatch={dispatch} />
 				<hr />
-				<PersonsInputBox state={state} dispatch={dispatch} />
+				<PeopleInputBox state={state} dispatch={dispatch} />
 				<hr />
 				<GroupCountInput state={state} dispatch={dispatch} />
 				<hr />

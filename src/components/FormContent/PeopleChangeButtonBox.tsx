@@ -4,13 +4,13 @@ import { Actions, State } from 'components/settingsReducer/settingsReducers.mode
 
 import Button from 'components/UI/Button/Button'
 
-import styles from './PersonsChangeButtonBox.module.scss'
+import styles from './PeopleChangeButtonBox.module.scss'
 
 interface Props {
 	state: State
 	dispatch: React.Dispatch<Actions>
 }
-function PersonsChangeButtonBox(props: Props) {
+function PeopleChangeButtonBox(props: Props) {
 	function addPerson() {
 		props.dispatch({ type: 'ADD_NEW_PERSON' })
 	}
@@ -35,4 +35,4 @@ function PersonsChangeButtonBox(props: Props) {
 	)
 }
 
-export default PersonsChangeButtonBox
+export default PeopleChangeButtonBox

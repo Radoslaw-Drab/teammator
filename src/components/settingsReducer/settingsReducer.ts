@@ -13,48 +13,48 @@ function reducer(state: State, action: Actions): State {
 		// Adds new person with random id and new name set by dispatch
 		case 'ADD_PERSON': {
 			const randomId = generateRandomKey().number
-			const updatedPersons = [...state.people].concat({
+			const updatedPeople = [...state.people].concat({
 				id: randomId,
 				name: action.newPersonName
 			})
-			const newState = { ...state, people: updatedPersons }
+			const newState = { ...state, people: updatedPeople }
 			saveStateToLocalStorage(newState)
 			return newState
 		}
 		// Adds new person with random id and new name set programmatically
 		case 'ADD_NEW_PERSON': {
 			const randomId = generateRandomKey().number
-			const updatedPersons = [...state.people].concat({
+			const updatedPeople = [...state.people].concat({
 				id: randomId,
 				name: `Person ${generateRandomKey(2).string}`
 			})
-			const newState = { ...state, people: updatedPersons }
+			const newState = { ...state, people: updatedPeople }
 			saveStateToLocalStorage(newState)
 			return newState
 		}
 		// Removes person with certain person id
 		case 'REMOVE_PERSON': {
-			const updatedPersons = [...state.people].filter((person) => person.id !== action.removePersonId)
-			const newState = { ...state, people: updatedPersons }
+			const updatedPeople = [...state.people].filter((person) => person.id !== action.removePersonId)
+			const newState = { ...state, people: updatedPeople }
 			saveStateToLocalStorage(newState)
 			return newState
 		}
 		// Removes last person
 		case 'REMOVE_LAST_PERSON': {
-			const updatedPersons = [...state.people].slice(0, -1)
-			const newState = { ...state, people: updatedPersons }
+			const updatedPeople = [...state.people].slice(0, -1)
+			const newState = { ...state, people: updatedPeople }
 			saveStateToLocalStorage(newState)
 			return newState
 		}
 		// Changes name of the person
 		case 'CHANGE_NAME': {
-			const updatedPersons = [...state.people].map((person) => {
+			const updatedPeople = [...state.people].map((person) => {
 				if (person.id !== action.person.id) {
 					return person
 				}
 				return { id: person.id, name: action.person.name }
 			})
-			return { ...state, people: updatedPersons }
+			return { ...state, people: updatedPeople }
 		}
 		case 'CREATE_GROUPS': {
 			// Number of groups to create
