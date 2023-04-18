@@ -21,7 +21,7 @@ function PersonsChangeButtonBox(props: Props) {
 		<div className={styles.box}>
 			<div>
 				<UsersIcon />
-				<span>{props.state.persons.length}</span>
+				<span>{props.state.people.length}</span>
 			</div>
 			<fieldset>
 				<Button onClick={addPerson}>

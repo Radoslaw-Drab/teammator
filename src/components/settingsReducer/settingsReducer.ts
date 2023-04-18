@@ -3,7 +3,7 @@ import { State, Actions, Person, Group } from './settingsReducers.model'
 import { generateRandomKey, saveStateToLocalStorage } from 'utils'
 
 const initialState: State = {
-	persons: [],
+	people: [],
 	groupsCount: 2,
 	groups: []
 }
@@ -13,56 +13,56 @@ function reducer(state: State, action: Actions): State {
 		// Adds new person with random id and new name set by dispatch
 		case 'ADD_PERSON': {
 			const randomId = generateRandomKey().number
-			const updatedPersons = [...state.persons].concat({
+			const updatedPersons = [...state.people].concat({
 				id: randomId,
 				name: action.newPersonName
 			})
-			const newState = { ...state, persons: updatedPersons }
+			const newState = { ...state, people: updatedPersons }
 			saveStateToLocalStorage(newState)
 			return newState
 		}
 		// Adds new person with random id and new name set programmatically
 		case 'ADD_NEW_PERSON': {
 			const randomId = generateRandomKey().number
-			const updatedPersons = [...state.persons].concat({
+			const updatedPersons = [...state.people].concat({
 				id: randomId,
 				name: `Person ${generateRandomKey(2).string}`
 			})
-			const newState = { ...state, persons: updatedPersons }
+			const newState = { ...state, people: updatedPersons }
 			saveStateToLocalStorage(newState)
 			return newState
 		}
 		// Removes person with certain person id
 		case 'REMOVE_PERSON': {
-			const updatedPersons = [...state.persons].filter((person) => person.id !== action.removePersonId)
-			const newState = { ...state, persons: updatedPersons }
+			const updatedPersons = [...state.people].filter((person) => person.id !== action.removePersonId)
+			const newState = { ...state, people: updatedPersons }
 			saveStateToLocalStorage(newState)
 			return newState
 		}
 		// Removes last person
 		case 'REMOVE_LAST_PERSON': {
-			const updatedPersons = [...state.persons].slice(0, -1)
-			const newState = { ...state, persons: updatedPersons }
+			const updatedPersons = [...state.people].slice(0, -1)
+			const newState = { ...state, people: updatedPersons }
 			saveStateToLocalStorage(newState)
 			return newState
 		}
 		// Changes name of the person
 		case 'CHANGE_NAME': {
-			const updatedPersons = [...state.persons].map((person) => {
+			const updatedPersons = [...state.people].map((person) => {
 				if (person.id !== action.person.id) {
 					return person
 				}
 				return { id: person.id, name: action.person.name }
 			})
-			return { ...state, persons: updatedPersons }
+			return { ...state, people: updatedPersons }
 		}
 		case 'CREATE_GROUPS': {
 			// Number of groups to create
-			const groupsCount = action.groupsCount || Math.max(state.groupsCount, Math.floor(state.persons.length / 2), 2)
+			const groupsCount = action.groupsCount || Math.max(state.groupsCount, Math.floor(state.people.length / 2), 2)
 			// Number of people per group rounded
-			const perGroup = Math.ceil((state.persons.length - (state.persons.length % groupsCount)) / groupsCount)
+			const perGroup = Math.ceil((state.people.length - (state.people.length % groupsCount)) / groupsCount)
 			// Number of people left after first attribution
-			const peopleLeft = state.persons.length % groupsCount
+			const peopleLeft = state.people.length % groupsCount
 			// Current number of people left
 			let currentPeopleLeft = peopleLeft
 
@@ -83,7 +83,7 @@ function reducer(state: State, action: Actions): State {
 					}
 
 					// Returns new group
-					const group: Group = { groupId: i, persons: people }
+					const group: Group = { groupId: i, people: people }
 					return group
 				})
 				// Each person left is added to the group
@@ -92,7 +92,7 @@ function reducer(state: State, action: Actions): State {
 					const randomPerson: Person = getRandomPerson(peopleTaken)
 
 					currentPeopleLeft--
-					return { ...group, persons: [...group.persons, randomPerson] }
+					return { ...group, people: [...group.people, randomPerson] }
 				})
 
 			const newState = { ...state, groups: groupsPopulated, groupsCount: groupsCount }
@@ -122,7 +122,7 @@ function reducer(state: State, action: Actions): State {
 	}
 	function getRandomPerson(exception: Person[], modifyExceptionArray: boolean = true): Person {
 		// Array containing people that have not been taken already
-		const excludedPeople: Person[] = state.persons.filter((person) => {
+		const excludedPeople: Person[] = state.people.filter((person) => {
 			// Searches for person inside of exception array
 			const foundPerson = exception?.find((p) => p.id === person.id)
 			return !foundPerson

@@ -11,7 +11,7 @@ interface Props {
 function GroupDisplay(props: Props) {
 	const { state } = props
 	const groups = state.groups.map((group) => {
-		const peopleElements = group.persons.map((person) => <li key={person.id}>{person.name}</li>)
+		const peopleElements = group.people.map((person) => <li key={person.id}>{person.name}</li>)
 		return (
 			<li key={group.groupId}>
 				<h2>

@@ -26,7 +26,7 @@ function PersonsInputBox(props: Props) {
 		dispatch({ type: 'SAVE_STATE' })
 	}
 
-	const inputFields = state.persons.map((person) => {
+	const inputFields = state.people.map((person) => {
 		const dataset = { 'data-person-id': person.id }
 		return (
 			<React.Fragment key={person.id}>

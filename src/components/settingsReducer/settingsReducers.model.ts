@@ -4,10 +4,10 @@ export type Person = {
 }
 export type Group = {
 	groupId: number
-	persons: Person[]
+	people: Person[]
 }
 export interface State {
-	persons: Person[]
+	people: Person[]
 	groupsCount: number
 	groups: Group[]
 }

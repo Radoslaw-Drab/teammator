@@ -24,7 +24,7 @@ function GroupCountInput(props: Props) {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [count])
 	function clampWithin(value: number) {
-		return Math.min(Math.max(value, 2), Math.max(props.state.persons.length, 2))
+		return Math.min(Math.max(value, 2), Math.max(props.state.people.length, 2))
 	}
 	return (
 		<fieldset className={styles.input}>

@@ -19,10 +19,10 @@ function ActionBox(props: Props) {
 	}
 	return (
 		<fieldset className={styles.box}>
-			<Button onClick={createGroups} disabled={props.state.persons.length < 2}>
+			<Button onClick={createGroups} disabled={props.state.people.length < 2}>
 				Create Groups
 			</Button>
-			<Button onClick={resetState} disabled={props.state.persons.length === 0}>
+			<Button onClick={resetState} disabled={props.state.people.length === 0}>
 				Reset
 			</Button>
 		</fieldset>
