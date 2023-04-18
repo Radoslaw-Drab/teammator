@@ -1,18 +1,14 @@
 import React from 'react'
-import { XMarkIcon } from '@heroicons/react/24/outline'
+import useAppContext from 'utils/use-app-context'
 
 import Button from 'components/UI/Button/Button'
 import Input from 'components/UI/Input/Input'
-import { Actions, State } from 'components/settingsReducer/settingsReducers.model'
 
 import styles from './PeopleInputBox.module.scss'
-interface Props {
-	state: State
-	dispatch: React.Dispatch<Actions>
-}
+import { XMarkIcon } from '@heroicons/react/24/outline'
 
-function PeopleInputBox(props: Props) {
-	const { state, dispatch } = props
+function PeopleInputBox() {
+	const { state, dispatch } = useAppContext()
 
 	function onRemovePerson(event: React.MouseEvent<HTMLButtonElement>) {
 		const id = +(event.currentTarget.dataset.personId ?? -1)

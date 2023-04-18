@@ -1,27 +1,24 @@
-import React from 'react'
-import { UserMinusIcon, UserPlusIcon, UsersIcon } from '@heroicons/react/24/outline'
-import { Actions, State } from 'components/settingsReducer/settingsReducers.model'
+import useAppContext from 'utils/use-app-context'
 
 import Button from 'components/UI/Button/Button'
 
+import { UserMinusIcon, UserPlusIcon, UsersIcon } from '@heroicons/react/24/outline'
 import styles from './PeopleChangeButtonBox.module.scss'
 
-interface Props {
-	state: State
-	dispatch: React.Dispatch<Actions>
-}
-function PeopleChangeButtonBox(props: Props) {
+function PeopleChangeButtonBox() {
+	const { state, dispatch } = useAppContext()
+
 	function addPerson() {
-		props.dispatch({ type: 'ADD_NEW_PERSON' })
+		dispatch({ type: 'ADD_NEW_PERSON' })
 	}
 	function removePerson() {
-		props.dispatch({ type: 'REMOVE_LAST_PERSON' })
+		dispatch({ type: 'REMOVE_LAST_PERSON' })
 	}
 	return (
 		<div className={styles.box}>
 			<div>
 				<UsersIcon />
-				<span>{props.state.people.length}</span>
+				<span>{state.people.length}</span>
 			</div>
 			<fieldset>
 				<Button onClick={addPerson}>

@@ -1,15 +1,10 @@
-import React from 'react'
-
-import { Actions, State } from 'components/settingsReducer/settingsReducers.model'
+import useAppContext from 'utils/use-app-context'
 
 import styles from './GroupDisplay.module.scss'
 
-interface Props {
-	state: State
-	dispatch?: React.Dispatch<Actions>
-}
-function GroupDisplay(props: Props) {
-	const { state } = props
+function GroupDisplay() {
+	const { state } = useAppContext()
+
 	const groups = state.groups.map((group) => {
 		const peopleElements = group.people.map((person) => <li key={person.id}>{person.name}</li>)
 		return (

@@ -1,6 +1,6 @@
-import React, { useEffect, useReducer } from 'react'
-import { settingsReducer } from 'components/settingsReducer/settingsReducer'
+import React, { useEffect } from 'react'
 import { getStateFromLocalStorage } from 'utils'
+import useAppContext from 'utils/use-app-context'
 
 import PeopleChangeButtonBox from 'components/FormContent/PeopleChangeButtonBox'
 import PeopleInputBox from 'components/FormContent/PeopleInputBox'
@@ -11,8 +11,7 @@ import GroupDisplay from 'components/GroupDisplay/GroupDisplay'
 import styles from './Main.module.scss'
 
 function Main() {
-	const [state, dispatch] = useReducer(settingsReducer.reducer, settingsReducer.initialState)
-
+	const { dispatch } = useAppContext()
 	function onFormSubmit(e: React.FormEvent<HTMLFormElement>) {
 		e.preventDefault()
 	}
@@ -22,19 +21,20 @@ function Main() {
 		if (state) {
 			dispatch({ type: 'SET_INIT_STATE', state })
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 	return (
 		<main className={styles.main}>
 			<form onSubmit={onFormSubmit}>
-				<PeopleChangeButtonBox state={state} dispatch={dispatch} />
+				<PeopleChangeButtonBox />
 				<hr />
-				<PeopleInputBox state={state} dispatch={dispatch} />
+				<PeopleInputBox />
 				<hr />
-				<GroupCountInput state={state} dispatch={dispatch} />
+				<GroupCountInput />
 				<hr />
-				<ActionBox state={state} dispatch={dispatch} />
+				<ActionBox />
 			</form>
-			<GroupDisplay state={state} dispatch={dispatch} />
+			<GroupDisplay />
 		</main>
 	)
 }
