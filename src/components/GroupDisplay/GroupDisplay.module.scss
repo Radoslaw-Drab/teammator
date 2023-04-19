@@ -20,9 +20,16 @@
 	& > ul {
 		width: 100%;
 		display: grid;
-		grid-template-columns: repeat(2, max-content);
-		justify-content: space-between;
+		grid-template-columns: repeat(2, 1fr);
+		justify-content: space-around;
 		gap: lib.$ws-size--60 lib.$ws-size--70;
+		@media screen and (min-width: 400px) {
+			display: flex;
+			flex-wrap: wrap;
+		}
+		& > li {
+			flex-basis: 8em;
+		}
 	}
 	ul > li > ul > li {
 		margin: lib.$ws-size--90 0;
