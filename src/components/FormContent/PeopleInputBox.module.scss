@@ -6,6 +6,7 @@
 	align-items: center;
 	gap: lib.$ws-size--100 lib.$ws-size--120;
 	font-size: lib.$font-size--110;
+
 	input {
 		font-size: inherit;
 		padding: lib.$ws-size--80;
@@ -23,6 +24,17 @@
 	button,
 	input {
 		margin: 0;
+	}
+	@media screen and (min-width: 470px) {
+		grid-template-columns: max-content auto max-content auto;
+		column-gap: 0;
+		input {
+			width: 9em;
+			margin-right: lib.$ws-size--80;
+		}
+		button:nth-of-type(odd) {
+			margin-right: lib.$ws-size--100;
+		}
 	}
 }
 .remove-button {
