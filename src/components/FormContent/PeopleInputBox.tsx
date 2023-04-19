@@ -26,7 +26,13 @@ function PeopleInputBox() {
 		const dataset = { 'data-person-id': person.id }
 		return (
 			<React.Fragment key={person.id}>
-				<Input type="text" defaultValue={person.name} onChange={onUserNameChange} onBlur={onBlur} other={dataset} />
+				<Input
+					type="text"
+					defaultValue={person.name}
+					onChange={onUserNameChange}
+					onBlur={onBlur}
+					other={{ ...dataset, maxLength: '13' }}
+				/>
 				<Button onClick={onRemovePerson} other={dataset} className={styles['remove-button']}>
 					<XMarkIcon />
 				</Button>
