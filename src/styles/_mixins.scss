@@ -78,7 +78,7 @@
 	transition: all $duration, $exceptions;
 }
 
-@mixin box($max-width: 600px) {
+@mixin box($max-width: 500px) {
 	border: 1.5px solid;
 	border-radius: 3px;
 	margin: ws.$size--110 auto;
