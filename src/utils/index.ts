@@ -1,22 +1,25 @@
 import { State } from 'components/settingsReducer/settingsReducers.model'
+import { Code } from './LanguageHandler'
 import CryptoJS from 'crypto-js'
 
 const decryptionKey = 'RadoslawDrab'
 const appLSKey = 'TEAMMATOR-DATA'
 
+interface Settings {
+	lang: Code
+}
 export function getStateFromLocalStorage(): State | null {
-	const encrypted = localStorage.getItem(appLSKey)
-	if (!encrypted) return null
-
-	const decrypted = CryptoJS.AES.decrypt(encrypted, decryptionKey)
-	return JSON.parse(decrypted.toString(CryptoJS.enc.Utf8))
+	return getFromLocalStorage('STATE')
 }
 export function saveStateToLocalStorage(state: State) {
-	const stateStr = JSON.stringify(state)
-	const encrypted = CryptoJS.AES.encrypt(stateStr, decryptionKey)
-	localStorage.setItem(appLSKey, encrypted.toString())
+	saveToLocalStorage(state, 'STATE')
 }
-
+export function getSettingsFromLocalStorage(): Settings {
+	return getFromLocalStorage('SETTINGS')
+}
+export function setSettingsToLocalStorage(settings: Settings) {
+	saveToLocalStorage(settings, 'SETTINGS')
+}
 export function generateRandomKey(length: number = 10): { number: number; string: string } {
 	const digitsCount: number = Math.max(length, 1)
 	const digits: number[] = []
@@ -29,4 +32,18 @@ export function generateRandomKey(length: number = 10): { number: number; string
 		return (acc += digit)
 	}, '')
 	return { number: +key, string: key }
+}
+
+type SaveType = 'STATE' | 'SETTINGS'
+function getFromLocalStorage(type: SaveType): any | null {
+	const encrypted = localStorage.getItem(appLSKey + '-' + type)
+	if (!encrypted) return null
+
+	const decrypted = CryptoJS.AES.decrypt(encrypted, decryptionKey)
+	return JSON.parse(decrypted.toString(CryptoJS.enc.Utf8))
+}
+export function saveToLocalStorage(data: any, type: SaveType) {
+	const stateStr = JSON.stringify(data)
+	const encrypted = CryptoJS.AES.encrypt(stateStr, decryptionKey)
+	localStorage.setItem(appLSKey + '-' + type, encrypted.toString())
 }
