@@ -1,5 +1,5 @@
 import { State } from 'components/settingsReducer/settingsReducers.model'
-import { Settings } from './AppSettingsContextWrapper'
+import { Settings } from 'components/appSettingsReducer/appSettingsReducer.modal'
 import CryptoJS from 'crypto-js'
 
 const decryptionKey = 'RadoslawDrab'
@@ -11,7 +11,7 @@ export function getStateFromLocalStorage(): State | null {
 export function saveStateToLocalStorage(state: State) {
 	saveToLocalStorage(state, 'STATE')
 }
-export function getSettingsFromLocalStorage(): Settings {
+export function getSettingsFromLocalStorage(): Settings | null {
 	return getFromLocalStorage('SETTINGS')
 }
 export function setSettingsToLocalStorage(settings: Settings) {

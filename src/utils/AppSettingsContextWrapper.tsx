@@ -1,16 +1,20 @@
-import React from 'react'
-import { Code } from './LanguageHandler'
+import React, { useReducer } from 'react'
+import { Settings, Actions } from 'components/appSettingsReducer/appSettingsReducer.modal'
+import { appSettingsReducer } from 'components/appSettingsReducer/appSettingsReducer'
 
-export interface Settings {
-	lang: Code
+interface Context {
+	state: Settings
+	dispatch: React.Dispatch<Actions>
 }
-export const AppSettingsContext = React.createContext<Settings>({ lang: 'en' })
+export const AppSettingsContext = React.createContext<Context>({ state: appSettingsReducer.initialState, dispatch: () => null })
 
 interface Props {
 	children?: any
 }
 function AppSettingsContextWrapper(props: Props) {
-	return <AppSettingsContext.Provider value={{ lang: 'en' }}>{props.children}</AppSettingsContext.Provider>
+	const [state, dispatch] = useReducer(appSettingsReducer.reducer, appSettingsReducer.initialState)
+
+	return <AppSettingsContext.Provider value={{ state, dispatch }}>{props.children}</AppSettingsContext.Provider>
 }
 
 export default AppSettingsContextWrapper
