@@ -1,0 +1,17 @@
+@use '/src/styles/library' as lib;
+
+.footer {
+	width: 100%;
+	padding: lib.$ws-size--80;
+	background-color: lib.$grey-100;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: lib.$ws-size--80;
+	input[name='LanguageRadio'] {
+		// display: none;
+	}
+	input:checked {
+		background-color: red;
+	}
+}
