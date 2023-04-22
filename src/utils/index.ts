@@ -1,5 +1,5 @@
 import { State } from 'components/settingsReducer/settingsReducers.model'
-import { Settings } from './SettingsContextWrapper'
+import { Settings } from './AppSettingsContextWrapper'
 import CryptoJS from 'crypto-js'
 
 const decryptionKey = 'RadoslawDrab'
