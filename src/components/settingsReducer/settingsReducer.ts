@@ -1,3 +1,4 @@
+import LanguageHandler from 'utils/LanguageHandler'
 import { State, Actions, Person, Group } from './settingsReducers.model'
 
 import { generateRandomKey, saveStateToLocalStorage } from 'utils'
@@ -15,7 +16,8 @@ function reducer(state: State, action: Actions): State {
 			const randomId = generateRandomKey().number
 			const updatedPeople = [...state.people].concat({
 				id: randomId,
-				name: action.newPersonName
+				name: action.newPersonName,
+				nameChanged: false
 			})
 			const newState = { ...state, people: updatedPeople }
 			saveStateToLocalStorage(newState)
@@ -26,7 +28,8 @@ function reducer(state: State, action: Actions): State {
 			const randomId = generateRandomKey().number
 			const updatedPeople = [...state.people].concat({
 				id: randomId,
-				name: `Person ${generateRandomKey(2).string}`
+				name: `${LanguageHandler('Person')} ${generateRandomKey(2).string}`,
+				nameChanged: false
 			})
 			const newState = { ...state, people: updatedPeople }
 			saveStateToLocalStorage(newState)
@@ -52,7 +55,7 @@ function reducer(state: State, action: Actions): State {
 				if (person.id !== action.person.id) {
 					return person
 				}
-				return { id: person.id, name: action.person.name }
+				return { id: person.id, name: action.person.name, nameChanged: true }
 			})
 			return { ...state, people: updatedPeople }
 		}
@@ -107,7 +110,16 @@ function reducer(state: State, action: Actions): State {
 		}
 		// Sets initial state
 		case 'SET_INIT_STATE': {
-			return { ...state, ...action.state }
+			const updatedState = { ...state, ...action.state }
+			const updatedPeopleNames = updatedState.people.map((person) => {
+				if (!person.nameChanged) {
+					return { ...person, name: `${LanguageHandler('Person')} ${person.name.split(' ')[1]}` }
+				}
+				return person
+			})
+
+			const newState = { ...updatedState, people: updatedPeopleNames }
+			return newState
 		}
 		// Saves state to localStorage
 		case 'SAVE_STATE': {
