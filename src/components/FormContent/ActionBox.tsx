@@ -1,4 +1,5 @@
 import useAppContext from 'utils/use-app-context'
+import LanguageHandler from 'utils/LanguageHandler'
 
 import Button from 'components/UI/Button/Button'
 
@@ -17,10 +18,10 @@ function ActionBox() {
 	return (
 		<fieldset className={styles.box}>
 			<Button onClick={createGroups} disabled={state.people.length < 2}>
-				Create Groups
+				{LanguageHandler('Create Groups')}
 			</Button>
 			<Button onClick={resetState} disabled={state.people.length === 0}>
-				Reset
+				{LanguageHandler('Reset')}
 			</Button>
 		</fieldset>
 	)

@@ -1,4 +1,5 @@
 import useAppContext from 'utils/use-app-context'
+import LanguageHandler from 'utils/LanguageHandler'
 
 import styles from './GroupDisplay.module.scss'
 
@@ -10,7 +11,7 @@ function GroupDisplay() {
 		return (
 			<li key={group.groupId}>
 				<h2>
-					Group
+					{LanguageHandler('Group')}
 					<span>{`#${group.groupId + 1}`}</span>
 				</h2>
 				<ul>{peopleElements}</ul>

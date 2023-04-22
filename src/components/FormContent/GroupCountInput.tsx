@@ -1,4 +1,5 @@
 import useAppContext from 'utils/use-app-context'
+import LanguageHandler from 'utils/LanguageHandler'
 
 import Button from 'components/UI/Button/Button'
 
@@ -21,7 +22,7 @@ function GroupCountInput() {
 		<fieldset className={styles.input}>
 			<label>
 				<UserGroupIcon />
-				<span>Groups</span>
+				<span>{LanguageHandler('Groups')}</span>
 			</label>
 			<div>
 				<Button onClick={increase}>
