@@ -1,16 +1,16 @@
 import Header from 'components/Header/Header'
 import Main from 'components/Main/Main'
 import AppContextWrapper from 'utils/AppContextWrapper'
-import SettingsContextWrapper from 'utils/SettingsContextWrapper'
+import AppSettingsContextWrapper from 'utils/AppSettingsContextWrapper'
 
 function App() {
 	return (
-		<SettingsContextWrapper>
+		<AppSettingsContextWrapper>
 		<AppContextWrapper>
 			<Header />
 			<Main />
 		</AppContextWrapper>
-		</SettingsContextWrapper>
+		</AppSettingsContextWrapper>
 	)
 }
 
