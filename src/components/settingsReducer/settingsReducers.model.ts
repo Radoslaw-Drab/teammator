@@ -1,6 +1,7 @@
 export type Person = {
 	id: number
 	name: string
+	nameChanged?: boolean
 }
 export type Group = {
 	groupId: number
