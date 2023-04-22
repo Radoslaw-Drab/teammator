@@ -1,17 +1,22 @@
 import useAppContext from 'utils/use-app-context'
-import LanguageHandler from 'utils/LanguageHandler'
+import useLanguage from 'utils/use-language'
 
 import styles from './GroupDisplay.module.scss'
 
 function GroupDisplay() {
 	const { state } = useAppContext()
+	const { translate, translateString } = useLanguage()
 
 	const groups = state.groups.map((group) => {
-		const peopleElements = group.people.map((person) => <li key={person.id}>{person.name}</li>)
+		const peopleElements = group.people.map((person) => {
+			const translated = translateString('Person', person.name)
+			const name = person.nameChanged ? person.name : translated
+			return <li key={person.id}>{name}</li>
+		})
 		return (
 			<li key={group.groupId}>
 				<h2>
-					{LanguageHandler('Group')}
+					{translate('Group')}
 					<span>{`#${group.groupId + 1}`}</span>
 				</h2>
 				<ul>{peopleElements}</ul>

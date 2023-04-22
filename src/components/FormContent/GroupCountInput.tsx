@@ -1,5 +1,5 @@
 import useAppContext from 'utils/use-app-context'
-import LanguageHandler from 'utils/LanguageHandler'
+import useLanguage from 'utils/use-language'
 
 import Button from 'components/UI/Button/Button'
 
@@ -8,6 +8,7 @@ import styles from './GroupCountInput.module.scss'
 
 function GroupCountInput() {
 	const { state, dispatch } = useAppContext()
+	const { translate } = useLanguage()
 
 	function increase() {
 		dispatch({ type: 'SET_GROUP_COUNT', groupsCount: clampWithin(state.groupsCount + 1) })
@@ -22,7 +23,7 @@ function GroupCountInput() {
 		<fieldset className={styles.input}>
 			<label>
 				<UserGroupIcon />
-				<span>{LanguageHandler('Groups')}</span>
+				<span>{translate('Groups')}</span>
 			</label>
 			<div>
 				<Button onClick={increase}>

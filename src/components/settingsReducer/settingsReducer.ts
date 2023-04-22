@@ -1,4 +1,4 @@
-import LanguageHandler from 'utils/LanguageHandler'
+import { translate } from 'utils/use-language'
 import { State, Actions, Person, Group } from './settingsReducers.model'
 
 import { generateRandomKey, saveStateToLocalStorage } from 'utils'
@@ -28,7 +28,7 @@ function reducer(state: State, action: Actions): State {
 			const randomId = generateRandomKey().number
 			const updatedPeople = [...state.people].concat({
 				id: randomId,
-				name: `${LanguageHandler('Person')} ${generateRandomKey(2).string}`,
+				name: `${translate('Person')} ${generateRandomKey(2).string}`,
 				nameChanged: false
 			})
 			const newState = { ...state, people: updatedPeople }
@@ -113,7 +113,7 @@ function reducer(state: State, action: Actions): State {
 			const updatedState = { ...state, ...action.state }
 			const updatedPeopleNames = updatedState.people.map((person) => {
 				if (!person.nameChanged) {
-					return { ...person, name: `${LanguageHandler('Person')} ${person.name.split(' ')[1]}` }
+					return { ...person, name: `${translate('Person')} ${person.name.split(' ')[1]}` }
 				}
 				return person
 			})
