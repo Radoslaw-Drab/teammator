@@ -1,13 +1,10 @@
 import { State } from 'components/settingsReducer/settingsReducers.model'
-import { Code } from './LanguageHandler'
+import { Settings } from './SettingsContextWrapper'
 import CryptoJS from 'crypto-js'
 
 const decryptionKey = 'RadoslawDrab'
 const appLSKey = 'TEAMMATOR-DATA'
 
-interface Settings {
-	lang: Code
-}
 export function getStateFromLocalStorage(): State | null {
 	return getFromLocalStorage('STATE')
 }
