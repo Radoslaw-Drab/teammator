@@ -13,11 +13,15 @@ const translations: Translation[] = [
 	{ en: 'Create Groups', pl: 'Stwórz Grupy' },
 	{ en: 'Reset', pl: 'Resetuj' }
 ]
+export const languages = Object.keys(translations[0])
+
+export function getCurrentLanguage() {
+	const languageFromLS = getSettingsFromLocalStorage()?.lang
+	return languageFromLS ?? navigator.language.split('-')[0] ?? 'en'
+}
 
 function LanguageHandler(text: string = '', code?: Code) {
-	const languageFromLS = getSettingsFromLocalStorage()?.lang
-
-	const lang = code ?? languageFromLS ?? navigator.language.split('-')[0] ?? 'en'
+	const lang = code ?? getCurrentLanguage()
 
 	const translation: any = translations.find((t) => t.en.toLowerCase() === text.toLowerCase())
 
