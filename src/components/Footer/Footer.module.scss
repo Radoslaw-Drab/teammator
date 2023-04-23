@@ -1,17 +1,100 @@
 @use '/src/styles/library' as lib;
 
 .footer {
-	width: 100%;
-	padding: lib.$ws-size--80;
-	background-color: lib.$grey-100;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	gap: lib.$ws-size--80;
-	input[name='LanguageRadio'] {
-		// display: none;
+	$colors: (
+		'color': lib.$main-700 lib.$main-800
+	);
+	@mixin custom-border-color() {
+		@include lib.mix-color-scheme($colors) using ($color) {
+			border-color: $color;
+		}
 	}
-	input:checked {
-		background-color: red;
+	$border-width: 1.5px;
+	$footer-size: 3.25rem;
+	position: fixed;
+	left: lib.$ws-size--80;
+	bottom: lib.$ws-size--80;
+	padding: lib.$ws-size--80;
+	height: $footer-size;
+	width: $footer-size;
+	aspect-ratio: 1 / 1;
+	overflow: hidden;
+	transition: all lib.$anim-duration--100;
+	&::before {
+		content: '';
+		position: absolute;
+		bottom: 0%;
+		left: 50%;
+		transform: translate(-50%, 0%);
+		width: calc(100% - 2 * $border-width);
+		aspect-ratio: 1 / 1;
+		border: $border-width solid;
+		@include custom-border-color();
+		border-radius: 50%;
+	}
+	svg {
+		position: absolute;
+		inset: lib.$ws-size--80;
+		top: auto;
+		width: auto;
+		aspect-ratio: 1 / 1;
+
+		@include lib.mix-color-scheme($colors) using ($color) {
+			stroke: $color;
+		}
+		transition: inherit;
+	}
+	fieldset {
+		$movement: 3px;
+		position: absolute;
+		left: 0;
+		bottom: calc(3rem + #{lib.$ws-size--90});
+		padding: lib.$ws-size--70 lib.$ws-size--60;
+
+		border-width: $border-width 0;
+		@include custom-border-color();
+
+		display: flex;
+		flex-direction: column-reverse;
+		gap: calc(lib.$ws-size--80 + $movement);
+		label {
+			position: relative;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 100%;
+			transition: all lib.$anim-duration--100;
+
+			&::before {
+				content: '';
+				position: absolute;
+				left: -7px;
+				top: 0;
+				height: 100%;
+				width: $border-width;
+				background-color: transparent;
+
+				transition: inherit;
+			}
+
+			img {
+				width: 100%;
+			}
+			&:hover {
+				transform: translateY(-$movement);
+				cursor: pointer;
+			}
+		}
+		input[name='LanguageRadio'] {
+			display: none;
+			&:checked + label::before {
+				@include lib.mix-color-scheme($colors) using ($color) {
+					background-color: $color;
+				}
+			}
+		}
+	}
+	&:hover {
+		height: 17rem;
 	}
 }
