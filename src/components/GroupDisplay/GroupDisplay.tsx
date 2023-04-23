@@ -5,14 +5,10 @@ import styles from './GroupDisplay.module.scss'
 
 function GroupDisplay() {
 	const { state } = useAppContext()
-	const { translate, translateString } = useLanguage()
+	const { translate } = useLanguage()
 
 	const groups = state.groups.map((group) => {
-		const peopleElements = group.people.map((person) => {
-			const translated = translateString('Person', person.name)
-			const name = person.nameChanged ? person.name : translated
-			return <li key={person.id}>{name}</li>
-		})
+		const peopleElements = group.people.map((person) => <li key={person.id}>{person.name}</li>)
 		return (
 			<li key={group.groupId}>
 				<h2>
