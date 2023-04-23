@@ -30,9 +30,6 @@ export function translate(text: string, code?: Code): string {
 
 	return translation[translationCode]
 }
-export function translateString(text: string, str: string) {
-	return str.replaceAll(text, translate(text))
-}
 function useLanguage() {
 	const { state } = useAppSettingsContext()
 
@@ -41,10 +38,7 @@ function useLanguage() {
 	function translateText(text: string) {
 		return translate(text, state.lang)
 	}
-	function translateString(text: string, str: string) {
-		return str.replaceAll(text, translateText(text))
-	}
-	return { translate: translateText, translateString, languages, translations: [...translations] }
+	return { translate: translateText, languages, translations: [...translations] }
 }
 
 export default useLanguage
