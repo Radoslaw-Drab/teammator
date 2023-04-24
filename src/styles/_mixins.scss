@@ -107,3 +107,6 @@
 		}
 	}
 }
+@mixin background($properties...) {
+	@include theme-prop(clr.$grey-100, clr.$grey-900, $properties);
+}
