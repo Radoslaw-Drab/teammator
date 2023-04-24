@@ -10,6 +10,8 @@ function reducer(state: Settings, action: Actions): Settings {
 		case 'SET_LANGUAGE': {
 			const updatedSettings = { ...state, lang: action.lang }
 			setSettingsToLocalStorage(updatedSettings)
+			const html = document.querySelector('html')
+			if (html) html.lang = action.lang
 			return updatedSettings
 		}
 	}
