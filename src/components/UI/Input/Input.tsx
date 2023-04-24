@@ -12,6 +12,7 @@ interface Props {
 	other?: object
 	className?: string
 	id?: string
+	accessibilityLabel?: string
 }
 function Input(props: Props) {
 	const inputClass: string = `${styles.input} ${props.className ?? ''} `
@@ -24,6 +25,7 @@ function Input(props: Props) {
 			type={props.type}
 			defaultValue={props.defaultValue}
 			value={props.value}
+			aria-label={props.accessibilityLabel}
 			{...props.other}
 			className={inputClass}
 		/>

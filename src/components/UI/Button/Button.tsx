@@ -7,11 +7,17 @@ interface Props {
 	children?: any
 	other?: object
 	disabled?: boolean
+	accessibilityLabel?: string
 }
 function Button(props: Props) {
 	const className = `${styles.button} ${props.className ?? ''}`
 	return (
-		<button className={className} onClick={props.onClick} disabled={props.disabled} {...props.other}>
+		<button
+			className={className}
+			onClick={props.onClick}
+			disabled={props.disabled}
+			aria-label={props.accessibilityLabel}
+			{...props.other}>
 			{props.children ?? 'Button'}
 		</button>
 	)
