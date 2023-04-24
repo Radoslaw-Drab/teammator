@@ -2,6 +2,7 @@
 .main {
 	width: 100%;
 	padding: lib.$ws-size--100;
+	margin-bottom: lib.$ws-size--130;
 	form {
 		@include lib.mix-box();
 	}
