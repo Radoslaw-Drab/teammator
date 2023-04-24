@@ -20,17 +20,17 @@ function GroupCountInput() {
 		return Math.min(Math.max(value, 2), Math.max(state.people.length, 2))
 	}
 	return (
-		<fieldset className={styles.input}>
+		<fieldset className={styles.input} aria-label="fieldset for changing groups count">
 			<label>
 				<UserGroupIcon />
 				<span>{translate('Groups')}</span>
 			</label>
 			<div>
-				<Button onClick={increase}>
+				<Button onClick={increase} accessibilityLabel="button for increasing number of groups">
 					<PlusIcon />
 				</Button>
 				<span>{state.groupsCount}</span>
-				<Button onClick={decrease}>
+				<Button onClick={decrease} accessibilityLabel="button for decreasing number of groups">
 					<MinusIcon />
 				</Button>
 			</div>

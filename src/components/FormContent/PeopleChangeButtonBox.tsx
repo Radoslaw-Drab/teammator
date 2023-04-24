@@ -20,11 +20,11 @@ function PeopleChangeButtonBox() {
 				<UsersIcon />
 				<span>{state.people.length}</span>
 			</div>
-			<fieldset>
-				<Button onClick={addPerson}>
+			<fieldset aria-label="fieldset with buttons for changing people count">
+				<Button onClick={addPerson} accessibilityLabel="button for adding new person">
 					<UserPlusIcon />
 				</Button>
-				<Button onClick={removePerson}>
+				<Button onClick={removePerson} accessibilityLabel="button for removing last person">
 					<UserMinusIcon />
 				</Button>
 			</fieldset>

@@ -17,11 +17,11 @@ function ActionBox() {
 		dispatch({ type: 'RESET_STATE' })
 	}
 	return (
-		<fieldset className={styles.box}>
-			<Button onClick={createGroups} disabled={state.people.length < 2}>
+		<fieldset className={styles.box} aria-label="form action fieldset">
+			<Button onClick={createGroups} disabled={state.people.length < 2} accessibilityLabel="button to create groups">
 				{translate('Create Groups')}
 			</Button>
-			<Button onClick={resetState} disabled={state.people.length === 0}>
+			<Button onClick={resetState} disabled={state.people.length === 0} accessibilityLabel="button to reset form">
 				{translate('Reset')}
 			</Button>
 		</fieldset>

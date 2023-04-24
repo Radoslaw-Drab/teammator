@@ -32,8 +32,13 @@ function PeopleInputBox() {
 					onChange={onUserNameChange}
 					onBlur={onBlur}
 					other={{ ...dataset, maxLength: '13' }}
+					accessibilityLabel="input where user can change person's name"
 				/>
-				<Button onClick={onRemovePerson} other={dataset} className={styles['remove-button']}>
+				<Button
+					onClick={onRemovePerson}
+					other={dataset}
+					className={styles['remove-button']}
+					accessibilityLabel="button for removing person">
 					<XMarkIcon />
 				</Button>
 			</React.Fragment>
