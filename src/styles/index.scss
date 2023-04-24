@@ -1,11 +1,11 @@
 @use '/src/styles/library' as lib;
 
-// @font-face {
-// 	font-family: 'Rubik';
-// 	src: url('/public/Rubik/Rubik-Italic-VariableFont_wght.ttf') format('truetype');
-// 	font-weight: normal;
-// 	font-style: normal;
-// }
+@font-face {
+	font-family: 'Rubik';
+	src: url('../../public/Rubik/Rubik-VariableFont_wght.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
 
 * {
 	box-sizing: border-box;
