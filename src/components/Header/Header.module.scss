@@ -1,11 +1,14 @@
 @use '/src/styles/library' as lib;
 
 .header {
+	position: sticky;
+	top: 0;
+	left: 0;
 	width: 100%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	padding: lib.$ws-size--80;
+	padding: lib.$ws-size--90;
 	h1 {
 		display: inline;
 		animation-duration: 30s;
