@@ -14,7 +14,7 @@
 }
 
 body {
-	@include lib.mix-theme-prop(lib.$grey-100, lib.$grey-900, background-color);
+	@include lib.mix-background(background-color);
 	font-family: 'Rubik', 'Lato', sans-serif;
 }
 a:link {
