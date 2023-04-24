@@ -9,6 +9,10 @@
 	justify-content: center;
 	align-items: center;
 	padding: lib.$ws-size--90;
+	border-bottom: 1.5px solid;
+	@include lib.mix-background(background-color);
+	@include lib.mix-borders();
+
 	h1 {
 		display: inline;
 		animation-duration: 30s;
