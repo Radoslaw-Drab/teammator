@@ -31,6 +31,7 @@
 		border: $border-width solid;
 		@include custom-border-color();
 		border-radius: 50%;
+		@include lib.mix-theme-prop(lib.$grey-100, lib.$grey-900, background-color);
 	}
 	svg {
 		position: absolute;
